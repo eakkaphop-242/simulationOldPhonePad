@@ -1,7 +1,7 @@
 namespace simulationOldPhonePad;
 public static class Constants
 {
-    public static Dictionary<string, string> a = new Dictionary<string, string>()
+    public static Dictionary<string, string> ALPHABETICAL = new Dictionary<string, string>()
     {
         { "2", "A" },{ "22", "B" },{ "222", "C" },
         { "3", "D" },{ "33", "E" },{ "333", "F" },
