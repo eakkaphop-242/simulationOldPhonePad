@@ -12,10 +12,6 @@ class Program
         Console.WriteLine("Press the Escape (Esc) key to quit: \n");
 
         OldPhoneService oldPhoneService = new OldPhoneService();
-        //oldPhoneService.OldPhonePad("33#");
-        //oldPhoneService.OldPhonePad("227*#");
-        //oldPhoneService.OldPhonePad("4433555 555666#");
-        //oldPhoneService.OldPhonePad("8 88777444666*664#");
         bool isInput = true;
         do
         {
@@ -32,7 +28,7 @@ class Program
                         //Console.WriteLine("CREATE TASK");
                         Task.Delay(2000).Wait();
                         if (cki.KeyChar.ToString() != "#") userInput.Add(Typing);
-                        Console.WriteLine("TEXT :: '" + Typing +"'");
+                        //Console.WriteLine("TEXT :: '" + Typing +"'");
                         //clear text typing
                         Typing = "";
                         isInput = true;
@@ -51,7 +47,7 @@ class Program
             {
                 isInput = true;
                 string textMessage = String.Join("", userInput);
-                oldPhoneService.OldPhonePad(textMessage);
+                Console.WriteLine("output : " + oldPhoneService.OldPhonePad(textMessage));
                 userInput.Clear();
             } 
             if ((cki.Modifiers & ConsoleModifiers.Alt) != 0) Console.Write("ALT+");

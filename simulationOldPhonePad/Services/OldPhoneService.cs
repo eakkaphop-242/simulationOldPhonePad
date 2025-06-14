@@ -6,7 +6,7 @@ namespace simulationOldPhonePad
     {
         Dictionary<string, string> Alphabet = Constants.ALPHABETICAL;
 
-        public void OldPhonePad(string userInput)
+        public string OldPhonePad(string userInput)
         {
             List<string> padText = new List<string>();
             userInput = handleCharacter(userInput);
@@ -22,7 +22,8 @@ namespace simulationOldPhonePad
                 }
             }
             string textMessage = MappingCharacter(padText);
-            Console.WriteLine("output : " + errorOutput(textMessage));
+            //Console.WriteLine("output : " + errorOutput(textMessage));
+            return textMessage;
         }
 
         private string handleCharacter(string userInput)
