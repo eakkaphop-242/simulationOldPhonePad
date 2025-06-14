@@ -4,8 +4,15 @@ namespace simulationOldPhonePad
 
     public class OldPhoneService
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Dictionary<string, string> Alphabet = Constants.ALPHABETICAL;
 
+
+        /// <summary>
+        /// Convert raw input (number) to text message 
+        /// </summary>
         public string OldPhonePad(string userInput)
         {
             List<string> padText = new List<string>();
@@ -29,6 +36,9 @@ namespace simulationOldPhonePad
             return errorOutput(textMessage);
         }
 
+        /// <summary>
+        /// This function is handle backspace input 
+        /// </summary>
         private string handleCharacter(string userInput)
         {
             while (userInput.IndexOf("*") != -1)
@@ -38,13 +48,17 @@ namespace simulationOldPhonePad
             return userInput;
         }
 
+        /// <summary>
+        /// This function is Mapping Char ex 222 = C , 2 = A , 22 = B
+        /// Handle spacebar and # 
+        /// </summary>
         private string MappingCharacter(List<string> userInput)
         {
             string textMessage = "";
             userInput.ForEach((x) =>
             {
-            string value;
-            x = x.Replace(" ", "").Replace("#" , "");
+                string value;
+                x = x.Replace(" ", "").Replace("#", "");
                 if (x != "")
                 {
                     value = Alphabet.ContainsKey(x) ? Alphabet[x] : "?";
@@ -54,16 +68,34 @@ namespace simulationOldPhonePad
             return textMessage;
         }
 
-        private string errorOutput(string textMessage) {
-            if (textMessage.IndexOf("?") != -1) { 
+        /// <summary>
+        /// This function is replace all characters when found ? 
+        /// </summary>
+        private string errorOutput(string textMessage)
+        {
+            if (textMessage.IndexOf("?") != -1)
+            {
                 for (int i = 0; i < textMessage.Length; i++)
                 {
-                    if (textMessage.Substring(i,1) != "?") {
+                    if (textMessage.Substring(i, 1) != "?")
+                    {
                         textMessage = textMessage.Replace(textMessage.Substring(i, 1), "?");
                     }
                 }
             }
             return textMessage;
+        }
+
+        /// <summary>
+        /// This function is validation raw input 
+        /// not allow Alphabet and special characters
+        /// </summary>
+        public bool validationInput(ConsoleKeyInfo keyInput)
+        {
+            return keyInput.KeyChar.ToString() != "#"
+                   && Char.IsNumber(keyInput.KeyChar)
+                   || keyInput.KeyChar.ToString() == "*"
+                   || keyInput.Key == ConsoleKey.Spacebar;
         }
     }
 }

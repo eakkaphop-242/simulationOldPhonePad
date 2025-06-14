@@ -3,54 +3,76 @@
 class Program
 {
     private static List<string> userInput = [];
-    private static string Typing = "";
+    private static string rawInput = "";
+
+    /// <summary>
+    /// Is simulation Old phone pad for send message 
+    /// if input 2  ex. '2' = A, '22' = B, '222' = C
+    /// the system will create task when you input 1st char = 1 task 
+    /// that task can holding 2 sec. 
+    /// * = backspace, # = end of input or send button
+    /// </summary>
     static void Main(string[] args)
     {
         ConsoleKeyInfo cki;
         Console.TreatControlCAsInput = true;
-        Console.WriteLine("Press any combination of CTL, ALT, and SHIFT, and a console key.");
         Console.WriteLine("Press the Escape (Esc) key to quit: \n");
-
         OldPhoneService oldPhoneService = new OldPhoneService();
         bool isInput = true;
         do
         {
+            // show log key input in console 
+            // show use false 
+            // not show use true
             cki = Console.ReadKey(true);
+            // check user input pad and that first time.
             if (isInput)
             {
                 isInput = false;
-                if (cki.KeyChar.ToString() != "#" && Char.IsNumber(cki.KeyChar) || cki.KeyChar.ToString() == "*" || cki.Key == ConsoleKey.Spacebar)
-                { 
-                        Typing += cki.KeyChar.ToString();
+                // validation in input
+                // see detail in  OldPhoneService.cs 
+                // function validationInput()
+                if (oldPhoneService.validationInput(cki))
+                {
+                    //the system will append text to rawInput
+                    rawInput += cki.KeyChar.ToString();
+                    // create task count 2 sec. 
                     _ = Task.Run(() =>
                     {
                         Task.Delay(2000).Wait();
-                        if (cki.KeyChar.ToString() != "#") userInput.Add(Typing);
-                        Console.WriteLine("Message :: '" + Typing +"'");
-                        Typing = "";
+                        // wait 2 sec and add rawInput to list<string> userInput
+                        if (cki.KeyChar.ToString() != "#") userInput.Add(rawInput);
+                        Console.WriteLine("Message :: '" + rawInput + "'");
+                        // clear rawInput for next task 
+                        rawInput = "";
                         isInput = true;
                     });
                 }
             }
             else
             {
-                if (cki.KeyChar.ToString() != "#" && Char.IsNumber(cki.KeyChar) || cki.KeyChar.ToString() == "*" || cki.Key == ConsoleKey.Spacebar)
+                if (oldPhoneService.validationInput(cki))
                 {
-                    Typing += cki.KeyChar.ToString();
+                    //append text to rawInput
+                    rawInput += cki.KeyChar.ToString();
                 }
             }
+            //when text # = end of input or send button
             if (cki.KeyChar.ToString() == "#")
             {
+                // clear value to defalt true 
                 isInput = true;
+                // covert list<string> to string 
                 string textMessage = String.Join("", userInput);
+                // call service OldPhonePad 
                 Console.WriteLine("output : " + oldPhoneService.OldPhonePad(textMessage));
                 userInput.Clear();
-            } 
-            if ((cki.Modifiers & ConsoleModifiers.Alt) != 0) Console.Write("ALT+");
-            if ((cki.Modifiers & ConsoleModifiers.Shift) != 0) Console.Write("SHIFT+");
-            if ((cki.Modifiers & ConsoleModifiers.Control) != 0) Console.Write("CTL+");
+            }
+        // Input ESC for Escape program.
         } while (cki.Key != ConsoleKey.Escape);
     }
+    
+    
 }
 
 

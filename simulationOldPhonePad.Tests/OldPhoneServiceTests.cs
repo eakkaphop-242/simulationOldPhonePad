@@ -1,5 +1,4 @@
 namespace simulationOldPhonePad.Tests;
-
 public class OldPhoneServiceTests
 {
     public OldPhoneService oldPhoneService = new OldPhoneService();
@@ -29,6 +28,6 @@ public class OldPhoneServiceTests
     public void PosiviteCase(string userInput, string expected)
     {
         string textMessage = oldPhoneService.OldPhonePad(userInput);
-        Assert.Equal(expected,textMessage);
+        Assert.Equal(expected, textMessage);
     }
 }
