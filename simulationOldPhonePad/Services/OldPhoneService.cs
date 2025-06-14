@@ -10,7 +10,7 @@ namespace simulationOldPhonePad
         {
             List<string> padText = new List<string>();
             userInput = handleCharacter(userInput);
-            for (int index = 0; index < userInput.Length; index++)
+            for (int index = 0; index < userInput.Length;)
             {
                 string currentText = userInput.Substring(index, 1);
                 string nextText = index + 1 < userInput.Length ? userInput.Substring(index + 1, 1) : "";
@@ -20,15 +20,19 @@ namespace simulationOldPhonePad
                     userInput = userInput.Remove(0, index + 1);
                     index = 0;
                 }
+                else
+                {
+                    index++;
+                }
             }
             string textMessage = MappingCharacter(padText);
-            //Console.WriteLine("output : " + errorOutput(textMessage));
-            return textMessage;
+            return errorOutput(textMessage);
         }
 
         private string handleCharacter(string userInput)
         {
-            while (userInput.IndexOf("*") != -1) {
+            while (userInput.IndexOf("*") != -1)
+            {
                 userInput = userInput.Remove(userInput.IndexOf("*") - 1, 2);
             }
             return userInput;
@@ -39,14 +43,13 @@ namespace simulationOldPhonePad
             string textMessage = "";
             userInput.ForEach((x) =>
             {
-                string value;
-                x = x.Replace(" ", "");
-                if (x.Contains(""))
+            string value;
+            x = x.Replace(" ", "").Replace("#" , "");
+                if (x != "")
                 {
                     value = Alphabet.ContainsKey(x) ? Alphabet[x] : "?";
                     textMessage += value;
                 }
-
             });
             return textMessage;
         }

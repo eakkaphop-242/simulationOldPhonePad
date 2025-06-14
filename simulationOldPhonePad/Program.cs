@@ -16,7 +16,6 @@ class Program
         do
         {
             cki = Console.ReadKey(true);
-            // need time to sec for count input
             if (isInput)
             {
                 isInput = false;
@@ -25,14 +24,11 @@ class Program
                         Typing += cki.KeyChar.ToString();
                     _ = Task.Run(() =>
                     {
-                        //Console.WriteLine("CREATE TASK");
                         Task.Delay(2000).Wait();
                         if (cki.KeyChar.ToString() != "#") userInput.Add(Typing);
-                        //Console.WriteLine("TEXT :: '" + Typing +"'");
-                        //clear text typing
+                        Console.WriteLine("Message :: '" + Typing +"'");
                         Typing = "";
                         isInput = true;
-                        //Console.WriteLine("END TASK");
                     });
                 }
             }
