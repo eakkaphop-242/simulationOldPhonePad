@@ -4,12 +4,7 @@ namespace simulationOldPhonePad
 
     public class OldPhoneService
     {
-        /// <summary>
-        /// 
-        /// </summary>
         Dictionary<string, string> Alphabet = Constants.ALPHABETICAL;
-
-
         /// <summary>
         /// Convert raw input (number) to text message 
         /// </summary>
