@@ -12,46 +12,52 @@ class Program
         Console.WriteLine("Press the Escape (Esc) key to quit: \n");
 
         OldPhoneService oldPhoneService = new OldPhoneService();
-
+        //oldPhoneService.OldPhonePad("33#");
+        //oldPhoneService.OldPhonePad("227*#");
+        //oldPhoneService.OldPhonePad("4433555 555666#");
+        //oldPhoneService.OldPhonePad("8 88777444666*664#");
         bool isInput = true;
         do
         {
-
             cki = Console.ReadKey(true);
             // need time to sec for count input
-            if (isInput && cki.KeyChar.ToString() != "#")
+            if (isInput)
             {
                 isInput = false;
-                Typing += cki.KeyChar.ToString();
-                _ = Task.Run(() =>
-                {
-                    Console.WriteLine("CREATE TASK");
-                    Task.Delay(3000).Wait();
-                    if (cki.KeyChar.ToString() != "#") userInput.Add(Typing);
-                    Typing = "";
-                    isInput = true;
-                    Console.WriteLine("END TASK");
-                });
+                if (cki.KeyChar.ToString() != "#" && Char.IsNumber(cki.KeyChar) || cki.KeyChar.ToString() == "*" || cki.Key == ConsoleKey.Spacebar)
+                { 
+                        Typing += cki.KeyChar.ToString();
+                    _ = Task.Run(() =>
+                    {
+                        //Console.WriteLine("CREATE TASK");
+                        Task.Delay(2000).Wait();
+                        if (cki.KeyChar.ToString() != "#") userInput.Add(Typing);
+                        Console.WriteLine("TEXT :: '" + Typing +"'");
+                        //clear text typing
+                        Typing = "";
+                        isInput = true;
+                        //Console.WriteLine("END TASK");
+                    });
+                }
             }
             else
             {
-                if (cki.KeyChar.ToString() != "#") Typing += cki.KeyChar.ToString();
-                Console.WriteLine("CURRENT TEXT ::" + Typing);
-                oldPhoneService.OldPhonePad(userInput);
+                if (cki.KeyChar.ToString() != "#" && Char.IsNumber(cki.KeyChar) || cki.KeyChar.ToString() == "*" || cki.Key == ConsoleKey.Spacebar)
+                {
+                    Typing += cki.KeyChar.ToString();
+                }
             }
-
-            // Console.WriteLine(" --- You pressed ");
+            if (cki.KeyChar.ToString() == "#")
+            {
+                isInput = true;
+                string textMessage = String.Join("", userInput);
+                oldPhoneService.OldPhonePad(textMessage);
+                userInput.Clear();
+            } 
             if ((cki.Modifiers & ConsoleModifiers.Alt) != 0) Console.Write("ALT+");
             if ((cki.Modifiers & ConsoleModifiers.Shift) != 0) Console.Write("SHIFT+");
             if ((cki.Modifiers & ConsoleModifiers.Control) != 0) Console.Write("CTL+");
-
-            // //Console.WriteLine(OldPhonePad(cki.KeyChar.ToString()) ? OutPut() : "");
-
-            //} while (cki.Key != ConsoleKey.Escape);
-            //} while (cki.KeyChar.ToString() != "#");
-
-        } while (cki.KeyChar.ToString() != "#");
-        userInput.ForEach(Console.WriteLine);
+        } while (cki.Key != ConsoleKey.Escape);
     }
 }
 
