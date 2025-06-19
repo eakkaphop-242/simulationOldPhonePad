@@ -1,4 +1,4 @@
-# Old Phone Pad send Message
+# Old Phone Pad Send Message
 This project simulates typing messages using an old mobile phone keypad. Users can input a sequence of key presses, and the program will convert it into a readable message.
 
 ## Description
