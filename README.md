@@ -1,5 +1,5 @@
 # Old Phone Pad send Message
- simulation old phone send sms
+This project simulates typing messages using an old mobile phone keypad. Users can input a sequence of key presses, and the program will convert it into a readable message.
 
 ## Description
 A system that simulates sending text messages on old mobile phones. For example, when you want to send the message 'HI', to send the message character by character, you input the number '44' to get 'H', '444' to get 'I', and when you press '#' it's like sending the message.
