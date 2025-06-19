@@ -1,10 +1,9 @@
 # Old Phone Pad send Message
-This project simulates typing messages using an old mobile phone keypad (T9-style or multi-tap input).  
-Users can input a sequence of key presses, and the program will convert it into a readable message.
-# Description
+ simulation old phone send sms
+##Description
 A system that simulates sending text messages on old mobile phones. For example, when you want to send the message 'HI', to send the message character by character, you input the number '44' to get 'H', '444' to get 'I', and when you press '#' it's like sending the message.
-## Getting Started
 
+## Getting Started
 
 Before installing and running this project, make sure you have the following installed:
 
@@ -26,7 +25,7 @@ You can verify your .NET SDK version by running:
 dotnet --version
 ```
 
-### Installation
+## Installation
 
 Follow these steps to set up and run the project locally:
 
@@ -35,7 +34,7 @@ Follow these steps to set up and run the project locally:
 ```bash
 https://github.com/eakkaphop-242/simulationOldPhonePad
 ```
-### Executing program
+## Executing program
 
 To run the application from the command line, follow these steps:
 
@@ -54,7 +53,7 @@ dotnet run
 ```
 
 
-### Running Tests
+## Running Tests
 
 To run the tests from the command line, follow these steps:
 
