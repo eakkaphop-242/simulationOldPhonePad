@@ -33,7 +33,7 @@ Follow these steps to set up and run the project locally:
 **Clone the repository**
 
 ```bash
-https://github.com/eakkaphop-242/simulationOldPhonePad
+git clone https://github.com/eakkaphop-242/simulationOldPhonePad
 ```
 ## Executing program
 
