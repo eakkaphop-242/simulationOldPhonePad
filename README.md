@@ -73,7 +73,7 @@ If you encounter any issues, feel free to:
 
 - Check the [Issues](https://github.com/eakkaphop-242/simulationOldPhonePad) tab to see if the problem has already been reported.
 - Create a new issue with a detailed description of the problem.
-- Contact the project maintainer at: eakkaphop.pt@gmail.com
+- Contact the project maintainer at: eakkaphop.pt@gmail.com , ttobas88@gmail.com
 
 ## Acknowledgments
 
